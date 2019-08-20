@@ -19,5 +19,25 @@ pipeline {
                 sh './jenkins/scripts/test.sh'
             }
         }
+        stage('deliver for developers') {
+            when {
+                branch 'development'
+            }
+            step {
+                sh './jenkins/scripts/deliver-for-development.sh'
+                input 'Deploy para ambiente de desenvolvimento?'
+                sh './jenkins/scripts/kill.sh'
+            }
+        }
+        stage('deliver for production') {
+            when {
+                branch 'production'
+            }
+            step {
+                sh './jenkins/scripts/deliver-for-pdctionuro.sh'
+                input 'Deploy para ambiente de produção?'
+                sh './jenkins/scripts/kill.sh'
+            }
+        }
     }
 }
