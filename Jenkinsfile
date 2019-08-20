@@ -23,7 +23,7 @@ pipeline {
             when {
                 branch 'development'
             }
-            step {
+            steps {
                 sh './jenkins/scripts/deliver-for-development.sh'
                 input 'Deploy para ambiente de desenvolvimento?'
                 sh './jenkins/scripts/kill.sh'
@@ -33,7 +33,7 @@ pipeline {
             when {
                 branch 'production'
             }
-            step {
+            steps {
                 sh './jenkins/scripts/deliver-for-pdctionuro.sh'
                 input 'Deploy para ambiente de produção?'
                 sh './jenkins/scripts/kill.sh'
